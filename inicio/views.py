@@ -17,7 +17,7 @@ def inicio(request):
     cotacao_jpy = []
 
     # Loop para pegar os últimos 5 dias (1 até 5)
-    for i in range(1, 6):
+    for i in range(0, 5):
         dia = hoje - datetime.timedelta(days=i) # Subtrai i dias da data de hoje
         dia_str = dia.isoformat()  # YYYY-MM-DD
 
@@ -54,7 +54,13 @@ def inicio(request):
     fig.update_layout(
         title="Cotações de USD nos últimos 5 dias",
         xaxis_title="Data",
-        yaxis_title="Cotação"
+        yaxis_title="Cotação",
+        xaxis=dict(
+            title="Data",
+            range=[datas[0], datas[-1]],  # Limita o eixo X ao intervalo definido
+            fixedrange= True               # Impede zoom/pan no eixo X
+        ),
+        yaxis= dict(title="Cotação")
     )
 
     # Serializa a figura Plotly para uma string JSON
