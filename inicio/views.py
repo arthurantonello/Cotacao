@@ -1,90 +1,63 @@
-import datetime
+import datetime # Biblioteca para data hora
 import requests
 import json
-import plotly.graph_objects as go
-from plotly.utils import PlotlyJSONEncoder
+import plotly.graph_objects as go # Utilizado o Scatter e o Figure
+from plotly.utils import PlotlyJSONEncoder # Para serializar objetos de gráfico em JSON
 
 from django.shortcuts import render
 from django.http import HttpResponse
 
 
 def inicio(request):
-    # Data de hoje
     hoje = datetime.date.today()
-    
-    # Listas para armazenar as datas e cotações
+
     datas = []
     cotacao_brl = []
     cotacao_eur = []
     cotacao_jpy = []
-    
-    # Obter os últimos 5 dias (do mais antigo para o mais recente)
-    # Se quiser inverter a ordem no gráfico, basta inverter a lógica abaixo.
-    for i in reversed(range(5)):
-        dia = hoje - datetime.timedelta(days=i)
-        dia_str = dia.isoformat()  # Formato YYYY-MM-DD
 
-        # Monta a URL da API. Exemplo de endpoint histórico:
-        # https://api.vatcomply.com/2023-03-01?base=USD
-        url = f"https://api.vatcomply.com/rates?{dia_str}&base=USD"
-        
-        try:
-            response = requests.get(url)
-            data_json = response.json()
+    # Loop para pegar os últimos 5 dias (1 até 5)
+    for i in range(1, 6):
+        dia = hoje - datetime.timedelta(days=i) # Subtrai i dias da data de hoje
+        dia_str = dia.isoformat()  # YYYY-MM-DD
 
-            # Guardar as datas e as cotações
-            datas.append(dia_str)
-            # "rates" é um dicionário com as chaves das moedas
-            cotacao_brl.append(data_json["rates"].get("BRL", 0))
-            cotacao_eur.append(data_json["rates"].get("EUR", 0))
-            cotacao_jpy.append(data_json["rates"].get("JPY", 0))
-        except Exception as e:
-            # Em caso de erro, preenche com zero ou trate como desejar
+        url = f"https://api.vatcomply.com/rates?date={dia_str}&base=USD" # Coleta as datas tendo base o USD
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            data_json = response.json() # Converte para um dicionário Python
+            datas.append(dia_str) # Adiciona a data formatada na lista de datas
+            rates = data_json.get("rates", {})
+
+            cotacao_brl.append(rates.get("BRL", 0))
+            cotacao_eur.append(rates.get("EUR", 0))
+            cotacao_jpy.append(rates.get("JPY", 0))
+        else:
+            # Se não retornar 200 (sucesso) retorna 0 em todos, caso a API dê problema
             datas.append(dia_str)
             cotacao_brl.append(0)
             cotacao_eur.append(0)
             cotacao_jpy.append(0)
-            print("Erro ao acessar API:", e)
 
-    # Criar o gráfico com Plotly
+    # Inverte a lista se quiser do mais antigo para o mais recente
+    datas.reverse()
+    cotacao_brl.reverse()
+    cotacao_eur.reverse()
+    cotacao_jpy.reverse()
+
+    # Cria uma Figure Plotly vazia e após insere cada uma das moedas respectivamente
     fig = go.Figure()
+    fig.add_trace(go.Scatter(x=datas, y=cotacao_brl, mode='lines+markers', name='USD -> BRL'))
+    fig.add_trace(go.Scatter(x=datas, y=cotacao_eur, mode='lines+markers', name='USD -> EUR'))
+    fig.add_trace(go.Scatter(x=datas, y=cotacao_jpy, mode='lines+markers', name='USD -> JPY'))
 
-    # Trace para BRL
-    fig.add_trace(go.Scatter(
-        x=datas,
-        y=cotacao_brl,
-        mode='lines+markers',
-        name='USD -> BRL',
-        line=dict(color='green')
-    ))
-
-    # Trace para EUR
-    fig.add_trace(go.Scatter(
-        x=datas,
-        y=cotacao_eur,
-        mode='lines+markers',
-        name='USD -> EUR',
-        line=dict(color='blue')
-    ))
-
-    # Trace para JPY
-    fig.add_trace(go.Scatter(
-        x=datas,
-        y=cotacao_jpy,
-        mode='lines+markers',
-        name='USD -> JPY',
-        line=dict(color='red')
-    ))
-
-    # Personalizar layout (opcional)
     fig.update_layout(
         title="Cotações de USD nos últimos 5 dias",
         xaxis_title="Data",
-        yaxis_title="Cotação",
-        hovermode="x unified"
+        yaxis_title="Cotação"
     )
 
-    # Converter a figura para JSON
+    # Serializa a figura Plotly para uma string JSON
     grafico_json = json.dumps(fig, cls=PlotlyJSONEncoder)
     
-    return render(request, "inicio.html", {"grafico_json": grafico_json})
+    return render(request, "inicio.html", {"grafico_json": grafico_json}) # Retorna o gráfico em JSON e o html
