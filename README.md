@@ -5,4 +5,5 @@ Recomendado uso de máquina virtual para execução
 Para utilização do código, favor digitar os seguintes códigos no terminal:
 
 pip install django
-pip install matplotlib 
+
+pip install requests plotly

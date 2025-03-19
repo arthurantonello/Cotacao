@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
@@ -10,15 +10,14 @@
 </head>
 <body>
     <h1>Gráfico Interativo com Plotly</h1>
-    <!-- Usando o filtro json_script para inserir o JSON de forma segura -->
-    {{ grafico_json|json_script:"grafico-data" }}
+   
 
-    <div id="grafico" style="width:600px; height:400px;"></div>
+    <div id="grafico" style="width: 800px; height: 500px;"></div>
 
     
     <script>
         var graficoJson = JSON.parse('{{ grafico_json|escapejs }}');
-
+        console.log("Dados do gráfico:", graficoJson);
 
         // Renderizando o gráfico
         Plotly.newPlot('grafico', graficoJson.data, graficoJson.layout);
