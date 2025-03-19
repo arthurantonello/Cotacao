@@ -5,9 +5,24 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../templates/static/css/styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 </head>
 <body>
-    <h1>Na pagina inicial</h1>
-    <button>Ok</button>
+    <h1>Gráfico Interativo com Plotly</h1>
+    <!-- Usando o filtro json_script para inserir o JSON de forma segura -->
+    {{ grafico_json|json_script:"grafico-data" }}
+
+    <div id="grafico" style="width:600px; height:400px;"></div>
+
+    
+    <script>
+        var graficoJson = JSON.parse('{{ grafico_json|escapejs }}');
+
+
+        // Renderizando o gráfico
+        Plotly.newPlot('grafico', graficoJson.data, graficoJson.layout);
+    </script>
+    
 </body>
 </html>
