@@ -7,3 +7,5 @@ Para utilização do código, favor digitar os seguintes códigos no terminal:
 pip install django
 
 pip install requests plotly
+
+pip install pandas-market-calendars

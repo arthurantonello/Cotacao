@@ -14,6 +14,25 @@
 
     <div id="grafico" style="width: 800px; height: 500px;"></div>
 
+    <div>
+        <!-- O link diminui o número de dias; desativa se já for 1 -->
+        {% if dias > 1 %}
+            <a href="?dias={{ dias|add:'-1' }}">
+                <button>Diminuir dias</button>
+            </a>
+        {% else %}
+            <button disabled>Diminuir dias</button>
+        {% endif %}
+
+        <!-- O link aumenta o número de dias; desativa se já for 5 -->
+        {% if dias < 5 %}
+            <a href="?dias={{ dias|add:'1' }}">
+                <button>Aumentar dias</button>
+            </a>
+        {% else %}
+            <button disabled>Aumentar dias</button>
+        {% endif %}
+    </div>
     
     <script>
         var graficoJson = JSON.parse('{{ grafico_json|escapejs }}');
