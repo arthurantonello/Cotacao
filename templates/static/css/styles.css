@@ -1,3 +1,36 @@
-h1{
-    color: red
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: "Roboto", sans-serif;
+}
+
+#logoabess {
+    max-width:200px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+}
+
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -20px;
+}
+
+#header button {
+    background-color: white;
+    color: black;
+    border: 2px solid #046daa;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.19);
+    border-radius: 9px;
+    padding: 5px;
+    margin: 10px;
+    font-size: 15px;
+    transition-duration: 0.4s;
+  }
+  
+#header button:hover {
+    background-color: #046daa;
+    color: white;
 }
