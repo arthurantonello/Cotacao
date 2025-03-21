@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import datetime # Biblioteca para data hora
 import requests
 import json
@@ -7,15 +5,12 @@ import pandas_market_calendars as mcal # Para coletar os dias de bolsa de valore
 import plotly.graph_objects as go # Utilizado o Scatter e o Figure
 from plotly.utils import PlotlyJSONEncoder # Para serializar objetos de gráfico em JSON
 
->>>>>>> Stashed changes
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.cache import cache
 
-<<<<<<< Updated upstream
 def inicio(request):
     return render(request, 'inicio.html')
-=======
 
 
 def grafico(request):
@@ -102,9 +97,6 @@ def grafico(request):
     return JsonResponse(fig_dict)
 
 def inicio(request):
-    """
-    Renderiza o template inicial com os botões e a div do gráfico.
-    O gráfico será carregado via JavaScript chamando chart_data.
-    """
+    # Renderiza o template inicial com os botões e a div do gráfico.
+    # O gráfico será carregado via JavaScript chamando chart_data.
     return render(request, "inicio.html")
->>>>>>> Stashed changes
