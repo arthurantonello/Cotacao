@@ -27,3 +27,4 @@ sqlparse==0.5.3
 toolz==1.0.0
 tzdata==2025.1
 urllib3==2.3.0
+gunicorn>=20.0.0

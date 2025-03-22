@@ -10,6 +10,8 @@ pip install requests plotly
 
 pip install pandas-market-calendars
 
+pip install gunicorn
+
 
 -------
 História de usuário:
