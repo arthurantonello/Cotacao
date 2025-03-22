@@ -1,4 +1,4 @@
-# Cotacao
+# Cotações
 <h2>Realização do desafio proposto pela empresta Abess, da implementação de um sistema de cotação monetária, afim de ingressar na vaga de Dev JR.</h2>
 
 <h3>Tu podes olhar o projeto funcionando acessando https://cotacao-production.up.railway.app/ </h3>
