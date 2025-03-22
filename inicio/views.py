@@ -31,7 +31,7 @@ def grafico(request):
     for i in range(0, dias):
         dia = hoje - datetime.timedelta(days=i) # Subtrai i dias da data de hoje
         dia_str = dia.isoformat()  # YYYY-MM-DD
-        calendario = mcal.get_calendar("NYSE")
+        calendario = mcal.get_calendar("NYSE") # Para leitura de dias úteis, utilizei a abertura/fechamento da bolsa de valores de NY, por ser USD
         schedule = calendario.schedule(start_date= dia_str, end_date= dia_str)
         url = f"https://api.vatcomply.com/rates?date={dia_str}&base=USD" # Coleta as datas tendo base o USD
         response = requests.get(url)
