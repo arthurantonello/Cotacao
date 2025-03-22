@@ -1,20 +1,20 @@
 # Cotacao
 <h2>Realização do desafio proposto pela empresta Abess, da implementação de um sistema de cotação monetária, afim de ingressar na vaga de Dev JR.</h2>
 
-Recomendado uso de máquina virtual para execução<br>
+<h3>Tu podes olhar o projeto funcionando acessando https://cotacao-production.up.railway.app/ </h3>
+
+
 Para utilização do código, favor digitar os seguintes códigos no terminal:
-
+> Recomendado uso de máquina virtual para execução.<br>
+```
 pip install django
-
 pip install requests plotly
-
 pip install pandas-market-calendars
-
 pip install gunicorn
-
+```
 
 -------
-História de usuário:
+<h3>História de usuário:</h3>
 
 Preciso de um sistema que guarde as cotações do dólar versus real, euro e iene(JPY) e que as exibe em um gráfico, respeitando as seguintes especificações:
 
