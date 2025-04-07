@@ -1,8 +1,9 @@
 # Cotações
-<h2>Realização do desafio proposto pela empresta Abess, da implementação de um sistema de cotação monetária, afim de ingressar na vaga de Dev JR.</h2>
+<h2>Realização do desafio proposto pela empresta Abess, da implementação de um sistema de cotação monetária, afim de aprimorar meus conhecimentos no consumo de API e utilização do framework Django.</h2>
 
 <h3>Tu podes olhar o projeto funcionando acessando https://cotacao-production.up.railway.app/ </h3>
 
+ <img src="https://github.com/arthurantonello/Cotacao/blob/e0a62ba797c37c8ab76d0b9611e054a99e95d8ef/staticfiles/img/pagina.png?raw=true" alt="Tela do formulário pronto" width="1000" height="275" />
 
 Para utilização do código, favor digitar os seguintes códigos no terminal:
 > Recomendado uso de máquina virtual para execução.<br>
