@@ -1,27 +1,25 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
     <title>Cotações</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
-
-</head>
-<body>
+  </head>
+  <body>
     <div id="container">
-        <div id="header">
-            <img id="logoabess" src="{% static 'img/LOGO-ABESS-1.png' %}" alt="Logo ABESS">
-            <!-- Botões que chamam a função JS trocaDias com +1 ou -1 -->
-            <button onclick="trocaDias(-1)">Diminuir dias</button>
-            <button onclick="trocaDias(1)">Aumentar dias</button>
-            <!-- Campo oculto ou visível para armazenar o valor atual de 'dias' -->
-            <input type="hidden" id="numDias" value="1">
-        </div>
-        <!-- Onde o gráfico será renderizado -->
-        <div id="grafico"></div>    
+      <div id="header">
+        <!-- Botões que chamam a função JS trocaDias com +1 ou -1 -->
+        <button onclick="trocaDias(-1)">Diminuir dias</button>
+        <button onclick="trocaDias(1)">Aumentar dias</button>
+        <!-- Campo oculto ou visível para armazenar o valor atual de 'dias' -->
+        <input type="hidden" id="numDias" value="1" />
+      </div>
+      <!-- Onde o gráfico será renderizado -->
+      <div id="grafico"></div>
     </div>
-</body>
+  </body>
 </html>
