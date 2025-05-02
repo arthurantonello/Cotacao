@@ -1,8 +1,6 @@
 # Cotações
 
-<h2>Um sistema que coleta cotações do dólar em relação ao real, euro e iene, exibindo-as em um gráfico. O gráfico mostra dados dos últimos 5 dias baseado na abertura da bolsa NYSE. A API do Vatcomply, conforme requisição no desafio, foi usada para coletar as cotações, e o backend foi feito em Python (Django). O frontend exibe os gráficos e o projeto foi hospedado no Railway</h2>
-
-<h3>Tu podes olhar o projeto funcionando acessando https://cotacao-production.up.railway.app/ </h3>
+Um sistema que coleta cotações do dólar em relação ao real, euro e iene, exibindo-as em um gráfico. O gráfico mostra dados dos últimos 5 dias baseado na abertura da bolsa NYSE. A API do Vatcomply, conforme requisição no desafio, foi usada para coletar as cotações, e o backend foi feito em Python (Django).
 
  <img src="https://github.com/arthurantonello/Cotacao/blob/e0a62ba797c37c8ab76d0b9611e054a99e95d8ef/staticfiles/img/pagina.png?raw=true" alt="Tela do formulário pronto" width="1000" height="275" />
 
